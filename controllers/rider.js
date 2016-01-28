@@ -40,7 +40,7 @@ exports.getRiders = function (req, res) {
     });
 };
 
-exports.getRider = function (req, res, next) {
+exports.getRider = function (req, res) {
     var session = req.session;
     if(!session || session.authorized === false)
         return res.status(403).send({error:true, message:"Forbidden"}).end();
@@ -56,7 +56,7 @@ exports.getRider = function (req, res, next) {
     });
 };
 
-exports.updateRider = function (req, res, next) {
+exports.updateRider = function (req, res) {
     var session = req.session;
     if(!session || session.authorized === false || (session.user.id + "" !== req.params.id))
         return res.status(403).send({error:true, message:"Forbidden"}).end();
@@ -75,7 +75,7 @@ exports.updateRider = function (req, res, next) {
     });
 };
 
-exports.deleteRider = function (req, res, next) {
+exports.deleteRider = function (req, res) {
     var session = req.session;
     if(!session || session.authorized === false || session.user.role !== "admin")
         return res.status(403).send({error:true, message:"Forbidden"}).end();
